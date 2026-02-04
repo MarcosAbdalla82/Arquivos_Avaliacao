@@ -107,9 +107,9 @@ def inserir_nps(id_avaliacao,nps):
 
 funs = le_funcionarios()
 
-IDs = list(funs['ID'])
-Nomes = list(funs['Nome'])
-Cargos = list(funs['Cargo'])
+IDs = list(funs['id'])
+Nomes = list(funs['nome'])
+Cargos = list(funs['cargo'])
 
 agora = datetime.now()
 data_formatada = agora.strftime("%d/%m/%Y - %H:%M")
@@ -220,6 +220,7 @@ if bt1:
     inserir_comentario(Ult_ava,OPN)
 
     inserir_nps(Ult_ava,P7)
+
 
 
 
