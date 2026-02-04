@@ -1,7 +1,7 @@
 #streamlit run app.py --server.port 8501
 
 import streamlit as st
-from datetime import datetime
+from datetime import datetime, timezone
 import pandas as pd
 import base64
 import psycopg2
@@ -130,7 +130,7 @@ IDs = list(funs['id'])
 Nomes = list(funs['nome'])
 Cargos = list(funs['cargo'])
 
-agora = datetime.now()
+agora = datetime.now(timezone.utc).replace(tzinfo=None)
 data_formatada = agora.strftime("%d/%m/%Y - %H:%M")
 
 st.markdown("""
@@ -239,6 +239,7 @@ if bt1:
     inserir_comentario(Ult_ava,OPN)
 
     inserir_nps(Ult_ava,P7)
+
 
 
 
