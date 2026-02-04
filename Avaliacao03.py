@@ -10,6 +10,7 @@ st.write("DB HOST:", st.secrets["db"]["host"])
 
 conexao = psycopg2.connect(
     host=st.secrets["db"]["host"],
+    port=6543,  
     database=st.secrets["db"]["name"],
     user=st.secrets["db"]["user"],
     password=st.secrets["db"]["password"],
@@ -220,3 +221,4 @@ if bt1:
     inserir_comentario(Ult_ava,OPN)
 
     inserir_nps(Ult_ava,P7)
+
