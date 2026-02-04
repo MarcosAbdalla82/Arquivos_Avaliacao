@@ -6,6 +6,8 @@ import pandas as pd
 import base64
 import psycopg2
 
+st.write("DB HOST:", st.secrets["db"]["host"])
+
 conexao = psycopg2.connect(
     host=st.secrets["db"]["host"],
     database=st.secrets["db"]["name"],
@@ -216,4 +218,5 @@ if bt1:
     a = 1
     inserir_avaliacao(id_selecionado,P1,P2,P3,P4,P5,data_formatada)
     inserir_comentario(Ult_ava,OPN)
+
     inserir_nps(Ult_ava,P7)
