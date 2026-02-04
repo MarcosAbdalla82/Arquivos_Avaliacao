@@ -83,26 +83,46 @@ def le_avaliacoes():
 Avas = le_avaliacoes()
 Ult_ava = int(Avas.iloc[0]["id"])+1
 
-def inserir_avaliacao(id,p1,p2,p3,p4,p5,data):
-    conexao.execute('''
-                 INSERT INTO Avaliacao (id_funcionario,nota_p1,nota_p2,nota_p3,nota_p4,nota_p5,data_hora)   
-                 VALUES(?,?,?,?,?,?,?)   
-                    ''',(id,p1,p2,p3,p4,p5,data))
+def inserir_avaliacao(id_funcionario, p1, p2, p3, p4, p5, data_hora):
+    cur = conexao.cursor()
+    cur.execute(
+        """
+        INSERT INTO avaliacao
+        (id_funcionario, nota_p1, nota_p2, nota_p3, nota_p4, nota_p5, data_hora)
+        VALUES (%s, %s, %s, %s, %s, %s, %s)
+        RETURNING id
+        """,
+        (id_funcionario, p1, p2, p3, p4, p5, data_hora)
+    )
+    novo_id = cur.fetchone()[0]
     conexao.commit()
+    cur.close()
+    return novo_id
 
-def inserir_comentario(id_avaliacao,comentario):
-    conexao.execute('''
-                INSERT INTO Comentario (id_avaliacao,comentario)
-                VALUES(?,?)
-                    ''',(id_avaliacao,comentario))
-    conexao.commit()
 
-def inserir_nps(id_avaliacao,nps):
-    conexao.execute('''
-                INSERT INTO NPS (id_avaliacao,nps)
-                VALUES(?,?)
-                    ''',(id_avaliacao,nps))
+def inserir_comentario(id_avaliacao, comentario):
+    cur = conexao.cursor()
+    cur.execute(
+        """
+        INSERT INTO comentario (id_avaliacao, comentario)
+        VALUES (%s, %s)
+        """,
+        (id_avaliacao, comentario)
+    )
     conexao.commit()
+    cur.close()
+
+def inserir_nps(id_avaliacao, nps):
+    cur = conexao.cursor()
+    cur.execute(
+        """
+        INSERT INTO nps (id_avaliacao, nps)
+        VALUES (%s, %s)
+        """,
+        (id_avaliacao, nps)
+    )
+    conexao.commit()
+    cur.close()
 
 funs = le_funcionarios()
 
@@ -219,6 +239,7 @@ if bt1:
     inserir_comentario(Ult_ava,OPN)
 
     inserir_nps(Ult_ava,P7)
+
 
 
 
