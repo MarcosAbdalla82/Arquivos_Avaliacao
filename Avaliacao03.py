@@ -81,7 +81,6 @@ def le_avaliacoes():
     return dados
 
 Avas = le_avaliacoes()
-st.write(Avas)
 Ult_ava = int(Avas.iloc[0]["id"])+1
 
 def inserir_avaliacao(id,p1,p2,p3,p4,p5,data):
@@ -220,6 +219,7 @@ if bt1:
     inserir_comentario(Ult_ava,OPN)
 
     inserir_nps(Ult_ava,P7)
+
 
 
 
