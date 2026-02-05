@@ -2,6 +2,7 @@
 
 import streamlit as st
 from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
 import pandas as pd
 import base64
 import psycopg2
@@ -130,7 +131,9 @@ IDs = list(funs['id'])
 Nomes = list(funs['nome'])
 Cargos = list(funs['cargo'])
 
-agora = datetime.now(timezone.utc).replace(tzinfo=None)
+#agora = datetime.now(timezone.utc).replace(tzinfo=None)
+agora_utc = datetime.now(timezone.utc)
+agora = agora_utc.astimezone(ZoneInfo("America/Sao_Paulo"))
 data_formatada = agora.strftime("%d/%m/%Y - %H:%M")
 
 st.markdown("""
@@ -239,6 +242,7 @@ if bt1:
     inserir_comentario(Ult_ava,OPN)
 
     inserir_nps(Ult_ava,P7)
+
 
 
 
