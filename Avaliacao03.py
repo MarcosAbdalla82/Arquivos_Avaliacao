@@ -166,19 +166,19 @@ funcionarios = {
 
 # Configuração da Barra Lateral
 
-st.sidebar.markdown('# **SENAI** SAT #')
+#st.sidebar.markdown('# **SENAI** SAT #')
 
-st.sidebar.title("Identificação")
+st.title("Identificação")
 
 # Selectbox para escolher o funcionário
-nome_selecionado = st.sidebar.selectbox("Selecione o funcionário:", Nomes, index = 4)
+nome_selecionado = st.selectbox("Selecione o funcionário:", Nomes, index = 4)
 indice = Nomes.index(nome_selecionado)
 id_selecionado = IDs[indice]
 cargo_selecionado = Cargos[indice]
 foto_selecionado = str(id_selecionado)+'.png'
 
 # Exibindo a foto e informações na sidebar
-st.sidebar.image(foto_selecionado, width=100, caption=f"ID: {cargo_selecionado}")
+st.image(foto_selecionado, width=100, caption=f"ID: {cargo_selecionado}")
 
 # Corpo principal do sistema de notas
 st.title(f"Avaliação de Atendimento: {nome_selecionado}")
@@ -242,6 +242,7 @@ if bt1:
     inserir_comentario(Ult_ava,OPN)
 
     inserir_nps(Ult_ava,P7)
+
 
 
 
