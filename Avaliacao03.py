@@ -171,7 +171,7 @@ st.sidebar.markdown('# **SENAI** SAT #')
 st.sidebar.title("Identificação")
 
 # Selectbox para escolher o funcionário
-nome_selecionado = st.sidebar.selectbox("Selecione o funcionário:", Nomes)
+nome_selecionado = st.sidebar.selectbox("Selecione o funcionário:", Nomes, index = 5)
 indice = Nomes.index(nome_selecionado)
 id_selecionado = IDs[indice]
 cargo_selecionado = Cargos[indice]
@@ -242,6 +242,7 @@ if bt1:
     inserir_comentario(Ult_ava,OPN)
 
     inserir_nps(Ult_ava,P7)
+
 
 
 
